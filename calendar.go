@@ -167,7 +167,7 @@ func (cal *ProductionCalendar) prepareCalendarYear(xmlcal *xmlcalendar) (*calend
 	for _, xmlday := range xmlcal.Days {
 		var fts int64
 		date := fmt.Sprintf("%d.%s", xmlcal.Year, xmlday.D)
-		timeD, err := time.Parse("2006.01.02", date)
+		timeD, err := time.ParseInLocation("2006.01.02", date, time.Local)
 
 		if err != nil {
 			return nil, fmt.Errorf("failed to parse date '%s': %w", date, err)
@@ -176,7 +176,7 @@ func (cal *ProductionCalendar) prepareCalendarYear(xmlcal *xmlcalendar) (*calend
 		if xmlday.F != "" {
 			weekendTo := fmt.Sprintf("%d.%s", xmlcal.Year, xmlday.F)
 
-			timeF, err := time.Parse("2006.01.02", weekendTo)
+			timeF, err := time.ParseInLocation("2006.01.02", weekendTo, time.Local)
 
 			if err != nil {
 				return nil, fmt.Errorf("failed to parse date'%s': %w", weekendTo, err)
