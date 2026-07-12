@@ -110,7 +110,7 @@ func (cal *ProductionCalendar) GetCalendarXml(year int) string {
 // getXmlContent выполняет чтение xml-файла для получения контента.
 func (cal *ProductionCalendar) getXmlContent(url string) (string, error) {
 
-	client := &http.Client{Timeout: 30 * time.Second} // TODO:: timeout to opts
+	client := &http.Client{Timeout: 60 * time.Second} // TODO:: timeout to opts
 
 	resp, err := client.Get(url)
 	if err != nil {
